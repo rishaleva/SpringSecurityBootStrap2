@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>UserName</th>
+        <th>LastName</th>
+        <th>Age</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:object="${user}">
+        <td> th:text="${user.getId()}"><</td>
+        <td> th:text="${user.getUsername()}"><</td>
+        <td> th:text="${user.getLastName()}"><</td>
+        <td> th:text="${user.getAge()}"><</td>
+    </tr>
+    </tbody>>
+</table>
+<label>Role:
+    <select size="2" multiple name="roles" >
+        <option value="1">USER</option>
+        <option selected="selected" value="2">ADMIN</option>
+    </select>
+</label>
+<button onclick="window.location.href = '/logout'">Logout</button>
+</body>
+</html>
