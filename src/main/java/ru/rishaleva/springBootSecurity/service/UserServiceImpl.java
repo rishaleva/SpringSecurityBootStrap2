@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Transactional
     public User getUser(Long id) {
-        Optional<User> userFromDb = userRepository.findById(id);
-        return userFromDb.orElse(new User());
+        Optional<User> userFromUsers = userRepository.findById(id);
+        return userFromUsers.orElse(new User());
     }
 
     @Override
@@ -48,15 +48,25 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     @Transactional
-    public void addUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public boolean addUser(User user) {
+        User userForAdd = userRepository.findByName(user.getName());
+        if (userForAdd != null) {  //если Имя = НикНейм
+            return false;
+        } else {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+        }
+        return true;
     }
 
     @Override
     @Transactional
-    public void removeUser(Long id) {
-        userRepository.deleteById(id);
+    public boolean removeUser(Long id) {
+        if (userRepository.findById(id).isPresent()) {
+            userRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -68,11 +78,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         userRepository.save(user);
     }
 
-    //дали имя пользователя - вернуть по нему самого юзера из бд
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        User user = findByUserName(name); //копаемся в бд
+        User user = findByUserName(name);
         if (user == null) {
-            throw new UsernameNotFoundException("User " + name + " not found"); //если не нашли юзера
+            throw new UsernameNotFoundException("User " + name + " not found");
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 mapRoles(user.getRoles()));
