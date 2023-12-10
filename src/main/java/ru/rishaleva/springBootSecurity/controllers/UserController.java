@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import ru.rishaleva.springBootSecurity.model.User;
 import ru.rishaleva.springBootSecurity.service.UserService;
 
 import java.security.Principal;
@@ -19,7 +19,8 @@ public class UserController {
 
     @GetMapping("/user")
     public String userPage(Model model, Principal principal) {
-        model.addAttribute("user", userService.findByUserName(principal.getName()));
+        User user = userService.findByUserName(principal.getName());
+        model.addAttribute("user", user);
         return "user";
     }
 }

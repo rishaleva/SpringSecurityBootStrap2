@@ -1,39 +1,44 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 <html lang="en">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>New User</title>
 </head>
 <body>
-<h2>Add new user</h2>
-<form th:method="POST" th:action="@{/admin/user}" th:object="${user}">
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{username}" id="name"/>
 
-    <br/>
-    <label for="name">Enter password: </label>
-    <input type="text" th:field="*{password}" id="password"/>
+<br>
 
-    <br/>
-    <label for="lastName">Enter last name: </label>
-    <input type="text" th:field="*{lastName}" id="lastName"/>
-
-    <br/>
-    <label for="age">Enter age: </label>
-    <input type="text" th:field="*{age}" id="age"/>
-
-    <br/>
-    <label for="role-select"></label><select id="role-select" required class="form-control" th:field="*{roles}" multiple="multiple" >
-    <option th:each="role : ${role}"
-            th:field="*{roles}"
-            th:value="${role.id}"
-            th:text="${role.nameOfRole}">Role
-    </option>
-    <br/>
-    <input type="submit" value="Save"/>
-    <a href="/admin/user" class="btn btn-secondary">Admin</a>
+<form th:method = "POST" th:action = "@{/admin/}" th:object= "${user}">
+    <label for = "name"> Name:</label>
+    <input type = "text" th:field = "*{username}" id = "name"/>
+    <br>
+    <br>
+    <label for = "lastName"> Lastname:</label>
+    <input type = "text" th:field = "*{lastName}" id = "lastName"/>
+    <br>
+    <br>
+    <label for = "age"> Age:</label>
+    <input type = "text" th:field = "*{age}" id = "age"/>
+    <br>
+    <br>
+    <label for = "password"> Password:</label>
+    <input type = "text" th:field = "*{password}" id = "password"/>
+    <br>
+    <br>
+    <label>Role:
+        <select size="2" multiple name="roles" >
+            <option value="1">USER</option>
+            <option selected="selected" value="2">ADMIN</option>
+        </select>
+    </label>
+    <br>
+    <br>
+    <input type = "submit" value = "Save"/>
 </form>
-<button onclick="window.location.href = '/logout'">Logout</button>
+<br>
+<input type = "button" value = "logout"
+       onclick = "window.location.href = '/logout'"/>
+
 </body>
 </html>

@@ -1,34 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="UTF-8">
-    <title>User</title>
+    <title>User information</title>
 </head>
 <body>
-<table border="1">
+
+<table border="1px" >
     <thead>
     <tr>
-        <th>Id</th>
-        <th>UserName</th>
-        <th>LastName</th>
-        <th>Age</th>
+        <th scope="col">Name</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Age</th>
     </tr>
     </thead>
     <tbody>
     <tr th:object="${user}">
-        <td> th:text="${user.getId()}"><</td>
-        <td> th:text="${user.getUsername()}"><</td>
-        <td> th:text="${user.getLastName()}"><</td>
-        <td> th:text="${user.getAge()}"><</td>
+        <td><h1 th:text="${user.getUserName()} "></h1></td>
+        <td><h1 th:text="${user.getLastName()}"></h1></td>
+        <td><h1 th:text="${user.getAge()}"></h1></td>
     </tr>
-    </tbody>>
+    </tbody>
 </table>
-<label>Role:
-    <select size="2" multiple name="roles" >
-        <option value="1">USER</option>
-        <option selected="selected" value="2">ADMIN</option>
-    </select>
-</label>
-<button onclick="window.location.href = '/logout'">Logout</button>
+
+<input align="right" type = "button" value = "logout"
+       onclick = "window.location.href = '/logout'"/>
+
 </body>
 </html>

@@ -31,9 +31,7 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    @Lazy
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository,@Lazy PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -46,7 +44,7 @@ public class UserService implements UserDetailsService {
         Optional<User> userFromDb = userRepository.findById(id);
         return userFromDb.orElse(new User());
     }
-    @Transactional
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
