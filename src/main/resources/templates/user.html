@@ -15,14 +15,14 @@
     </thead>
     <tbody>
     <tr th:object="${user}">
-        <td><h1 th:text="${user.getUserName()} "></h1></td>
+        <td><h1 th:text="${user.getName()} "></h1></td>
         <td><h1 th:text="${user.getLastName()}"></h1></td>
         <td><h1 th:text="${user.getAge()}"></h1></td>
     </tr>
     </tbody>
 </table>
 
-<input align="right" type = "button" value = "logout"
+<input align="right" type = "button" value = "Logout"
        onclick = "window.location.href = '/logout'"/>
 
 </body>

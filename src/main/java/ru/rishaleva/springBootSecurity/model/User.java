@@ -1,6 +1,6 @@
 package ru.rishaleva.springBootSecurity.model;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,48 +8,51 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 
 @Entity
+@EqualsAndHashCode
 @Table(name = "users")
 public class User implements UserDetails {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "password")
     private String password;
 
     @Column(name = "name")
-    private String userName;
+    private String name;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "age")
-    private byte age;
+    private Long age;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @Fetch(FetchMode.JOIN)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    private Collection<Role> roles;
+
 
     public User() {
     }
 
-    public User(long id, String password, String userName, String lastName, byte age, Set<Role> roles) {
-        this.id = id;
-        this.password = password;
-        this.userName = userName;
+    public User(String name, String lastName, Long age) {
+        this.name = name;
         this.lastName = lastName;
         this.age = age;
-        this.roles = roles;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -57,14 +60,13 @@ public class User implements UserDetails {
         return getRoles();
     }
 
-    @Override
     public String getPassword() {
         return password;
     }
 
     @Override
     public String getUsername() {
-        return userName;
+        return name;
     }
 
     @Override
@@ -87,25 +89,16 @@ public class User implements UserDetails {
         return true;
     }
 
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLastName() {
@@ -116,19 +109,20 @@ public class User implements UserDetails {
         this.lastName = lastName;
     }
 
-    public byte getAge() {
+    public Long getAge() {
         return age;
     }
 
-    public void setAge(byte age) {
+    public void setAge(Long age) {
         this.age = age;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     public Collection<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 }

@@ -5,13 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73145ae2-f86b-4e87-ac7f-40accdbdc78c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/service/RoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/service/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/configs/MvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/configs/MvcConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/configs/SuccessUserHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/configs/SuccessUserHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/configs/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/configs/WebSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/controllers/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/controllers/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/controllers/HelloController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/model/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/repository/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/service/RoleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rishaleva/springBootSecurity/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/hello.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/hello.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/userCreate.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/userCreate.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/userUpdate.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/userUpdate.html" afterDir="false" />
@@ -25,9 +33,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="HTML File" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -108,11 +116,24 @@
       <workItem from="1702166218822" duration="44000" />
       <workItem from="1702166669938" duration="702000" />
       <workItem from="1702170748485" duration="659000" />
-      <workItem from="1702232402705" duration="3441000" />
+      <workItem from="1702232402705" duration="9460000" />
     </task>
+    <task id="LOCAL-00001" summary="dont work users">
+      <option name="closed" value="true" />
+      <created>1702235991579</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702235991579</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="dont work users" />
+    <option name="LAST_COMMIT_MESSAGE" value="dont work users" />
   </component>
 </project>

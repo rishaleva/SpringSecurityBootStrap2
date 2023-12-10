@@ -9,7 +9,7 @@
     <form th:method= "PATCH" th:action= "@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
 
         <label for="name">Name: </label>
-        <input type="text"  th:field="*{username}" id="name"/>
+        <input type="text"  th:field="*{name}" id="name"/>
         <br/>
         <br>
 
@@ -39,7 +39,7 @@
         <input type="submit" value="Update"/>
     </form>
     <br>
-    <input align="right" type = "button" value = "logout"
+    <input align="right" type = "button" value = "Logout"
            onclick = "window.location.href = '/logout'"/>
 </div>
 </body>

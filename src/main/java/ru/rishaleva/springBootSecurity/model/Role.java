@@ -1,69 +1,52 @@
 package ru.rishaleva.springBootSecurity.model;
 
+import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 
 @Entity
+@EqualsAndHashCode
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
-
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "name_of_role")
-    private String nameOfRole;
+    private String name;
     @ManyToMany(mappedBy = "roles")
-    private Set<User> userSet = new HashSet<>();
+    private Collection<User> users;
 
     public Role() {
     }
 
-    public Role(long id, String nameOfRole) {
-        this.id = id;
-        this.nameOfRole = nameOfRole;
+    public Role(String name) {
+        this.name = name;
     }
 
-    public long getId() {
+    public Collection<User> getUsers() {
+        return users;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String setName(String name) {
+        return this.name = name;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNameOfRole() {
-        return nameOfRole;
-    }
-
-    public void setNameOfRole(String nameOfRole) {
-        this.nameOfRole = nameOfRole;
-    }
-
-    public Set<User> getUserSet() {
-        return userSet;
-    }
-
-    public void setUserSet(Set<User> userSet) {
-        this.userSet = userSet;
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", nameOfRole='" + nameOfRole + '\'' +
-                ", userSet=" + userSet +
-                '}';
     }
 
     @Override
     public String getAuthority() {
-        return getNameOfRole();
+        return getName();
     }
 }
