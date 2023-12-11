@@ -1,14 +1,17 @@
 package ru.rishaleva.springBootSecurity.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.rishaleva.springBootSecurity.model.Role;
 import ru.rishaleva.springBootSecurity.model.User;
 import ru.rishaleva.springBootSecurity.service.RoleService;
 import ru.rishaleva.springBootSecurity.service.UserService;
-import ru.rishaleva.springBootSecurity.service.UserServiceImpl;
+import ru.rishaleva.springBootSecurity.Dao.UserDaoImpl;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -21,7 +24,7 @@ public class AdminController {
     private final UserService userService;
     private final RoleService roleService;
     @Autowired
-    public AdminController(UserServiceImpl userService, RoleService roleService) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
@@ -47,8 +50,14 @@ public class AdminController {
     }
 
     @PostMapping("/")
-    public String addUser(@ModelAttribute("user") @Valid User user) {
+    public String addUser(@ModelAttribute("user") @Valid User user, ModelMap model,BindingResult bindingResult) {
+        model.addAttribute("roles", roleService.getRoles());
         userService.addUser(user);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        userService.updateUser(user);
+
         return "redirect:/admin/";
     }
 

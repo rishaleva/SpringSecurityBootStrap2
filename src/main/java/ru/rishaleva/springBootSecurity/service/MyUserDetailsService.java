@@ -1,14 +1,13 @@
 package ru.rishaleva.springBootSecurity.service;
 
-import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import ru.rishaleva.springBootSecurity.Dao.UserDaoImpl;
 import ru.rishaleva.springBootSecurity.model.Role;
 import ru.rishaleva.springBootSecurity.model.User;
 
@@ -17,15 +16,15 @@ import java.util.stream.Collectors;
 
 @Component
 public class MyUserDetailsService implements UserDetailsService {
-    UserServiceImpl userServiceImpl;
+    UserDaoImpl userDaoImpl;
 
     @Autowired
-    public MyUserDetailsService(UserServiceImpl userService) {
-        this.userServiceImpl = userService;
+    public MyUserDetailsService(UserDaoImpl userService) {
+        this.userDaoImpl = userService;
     }
 
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        User user = userServiceImpl.findByUserName(name);
+        User user = userDaoImpl.findByUserName(name);
         if (user == null) {
             throw new UsernameNotFoundException("User " + name + " not found");
         }

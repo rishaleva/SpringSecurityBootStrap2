@@ -1,10 +1,12 @@
-package ru.rishaleva.springBootSecurity.service;
+package ru.rishaleva.springBootSecurity.Dao;
 
+import org.springframework.stereotype.Repository;
 import ru.rishaleva.springBootSecurity.model.User;
 
 import java.util.List;
 
-public interface UserService {
+@Repository
+public interface UserDao {
     User findByUserName(String name);
 
     User getUser(Long id);
