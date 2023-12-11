@@ -20,7 +20,6 @@ public class MyUserDetailsService implements UserDetailsService {
     UserServiceImpl userServiceImpl;
 
     @Autowired
-    @Lazy
     public MyUserDetailsService(UserServiceImpl userService) {
         this.userServiceImpl = userService;
     }
