@@ -11,7 +11,6 @@ import ru.rishaleva.springBootSecurity.model.Role;
 import ru.rishaleva.springBootSecurity.model.User;
 import ru.rishaleva.springBootSecurity.service.RoleService;
 import ru.rishaleva.springBootSecurity.service.UserService;
-import ru.rishaleva.springBootSecurity.Dao.UserDaoImpl;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -23,6 +22,7 @@ import java.util.List;
 public class AdminController {
     private final UserService userService;
     private final RoleService roleService;
+
     @Autowired
     public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
@@ -50,7 +50,7 @@ public class AdminController {
     }
 
     @PostMapping("/")
-    public String addUser(@ModelAttribute("user") @Valid User user, ModelMap model,BindingResult bindingResult) {
+    public String addUser(@ModelAttribute("user") @Valid User user, ModelMap model) {
         model.addAttribute("roles", roleService.getRoles());
         userService.addUser(user);
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

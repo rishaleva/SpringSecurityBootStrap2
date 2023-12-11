@@ -1,10 +1,7 @@
 package ru.rishaleva.springBootSecurity.Dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import ru.rishaleva.springBootSecurity.model.Role;
-import ru.rishaleva.springBootSecurity.service.RoleService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

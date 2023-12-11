@@ -6,8 +6,9 @@ import ru.rishaleva.springBootSecurity.Dao.RoleDao;
 import ru.rishaleva.springBootSecurity.model.Role;
 
 import java.util.List;
+
 @Service
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements RoleService {
     private final RoleDao roleDao;
 
     @Autowired
@@ -17,6 +18,6 @@ public class RoleServiceImpl implements RoleService{
 
     @Override
     public List<Role> getRoles() {
-      return roleDao.getRoles();
+        return roleDao.getRoles();
     }
 }

@@ -12,6 +12,7 @@ import java.security.Principal;
 @Controller
 public class UserController {
     private final UserDaoImpl userDaoImpl;
+
     @Autowired
     public UserController(UserDaoImpl userDaoImpl) {
         this.userDaoImpl = userDaoImpl;

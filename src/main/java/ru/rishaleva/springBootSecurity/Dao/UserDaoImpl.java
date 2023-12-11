@@ -1,32 +1,19 @@
 package ru.rishaleva.springBootSecurity.Dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.rishaleva.springBootSecurity.model.User;
-
-import ru.rishaleva.springBootSecurity.service.UserService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Optional;
 
 
 @Repository
 public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
-    private final UserDao userDao;
-    @Lazy
-    @Autowired
-    public UserDaoImpl(UserDao userDao) {
-        this.userDao = userDao;
-    }
 
     public User findByUserName(String name) {
         String query = "Select u from User u left join fetch u.roles where u.name=:name";
@@ -39,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 
     @Transactional
     public User getUser(Long id) {
-       return entityManager.find(User.class, id);
+        return entityManager.find(User.class, id);
     }
 
     @Override
