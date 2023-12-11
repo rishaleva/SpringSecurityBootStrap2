@@ -1,5 +1,6 @@
 package ru.rishaleva.springBootSecurity.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import ru.rishaleva.springBootSecurity.service.RoleService;
 import ru.rishaleva.springBootSecurity.service.UserService;
 import ru.rishaleva.springBootSecurity.service.UserServiceImpl;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
@@ -18,7 +20,7 @@ import java.util.List;
 public class AdminController {
     private final UserService userService;
     private final RoleService roleService;
-
+    @Autowired
     public AdminController(UserServiceImpl userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
@@ -45,7 +47,7 @@ public class AdminController {
     }
 
     @PostMapping("/")
-    public String addUser(@ModelAttribute("user") User user) {
+    public String addUser(@ModelAttribute("user") @Valid User user) {
         userService.addUser(user);
         return "redirect:/admin/";
     }
