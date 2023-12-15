@@ -15,11 +15,11 @@ public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public User findByUserName(String name) {
-        String query = "Select u from User u left join fetch u.roles where u.name=:name";
-        User user = entityManager.createQuery(query, User.class).setParameter("name", name).getSingleResult();
+    public User findByUserEmail(String email) {
+        String query = "select distinct u from User AS u left join fetch u.roles where u.email = :email";
+        User user = entityManager.createQuery(query, User.class).setParameter("email", email).getSingleResult();
         if (user == null) {
-            throw new UsernameNotFoundException("User " + name + " not found");
+            throw new UsernameNotFoundException("User " + email + " not found");
         }
         return user;
     }

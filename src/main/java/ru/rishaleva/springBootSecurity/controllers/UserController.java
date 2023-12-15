@@ -20,7 +20,7 @@ public class UserController {
 
     @GetMapping("/user")
     public String userPage(Model model, Principal principal) {
-        User user = userDaoImpl.findByUserName(principal.getName());
+        User user = userDaoImpl.findByUserEmail(principal.getName());
         model.addAttribute("user", user);
         return "user";
     }

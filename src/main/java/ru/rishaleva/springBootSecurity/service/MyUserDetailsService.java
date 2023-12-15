@@ -24,12 +24,12 @@ public class MyUserDetailsService implements UserDetailsService {
         this.userDao = userService;
     }
 
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        User user = userDao.findByUserName(name);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userDao.findByUserEmail(email);
         if (user == null) {
-            throw new UsernameNotFoundException("User " + name + " not found");
+            throw new UsernameNotFoundException("User " + email + " not found");
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
                 mapRoles(user.getRoles()));
     }
 

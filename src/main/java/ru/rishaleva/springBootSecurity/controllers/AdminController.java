@@ -32,7 +32,7 @@ public class AdminController {
     //ALL
     @GetMapping(value = "/")
     public String getAllUsers(ModelMap model, Principal principal) {
-        User user = userService.findByUserName(principal.getName());
+        User user = userService.findByUserEmail(principal.getName());
         model.addAttribute("user", user);
         List<User> listOfUsers = userService.getAllUsers();
         model.addAttribute("listOfUsers", listOfUsers);
