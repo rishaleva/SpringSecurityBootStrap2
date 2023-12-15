@@ -39,14 +39,8 @@ public class AdminController {
     }
 
     @PostMapping("/")
-    public String addUser(@ModelAttribute("user") @Valid User user, ModelMap model) {
-        model.addAttribute("roles", roleService.getRoles());
+    public String addUser(@ModelAttribute("user") @Valid User user) {
         userService.addUser(user);
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        userService.updateUser(user);
-
         return "redirect:/admin/";
     }
 
@@ -56,7 +50,6 @@ public class AdminController {
         return "redirect:/admin/";
     }
 
-    // DELETE
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.removeUser(id);
