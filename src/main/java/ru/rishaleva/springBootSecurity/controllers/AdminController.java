@@ -5,17 +5,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.rishaleva.springBootSecurity.model.Role;
 import ru.rishaleva.springBootSecurity.model.User;
 import ru.rishaleva.springBootSecurity.service.RoleService;
 import ru.rishaleva.springBootSecurity.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin")
@@ -41,6 +39,10 @@ public class AdminController {
     @PostMapping("/")
     public String addUser(@ModelAttribute("user") @Valid User user) {
         userService.addUser(user);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(user.getRoles().stream().map(role -> roleService.findById(role.getId())).collect(Collectors.toSet()));
+        userService.updateUser(user);
         return "redirect:/admin/";
     }
 

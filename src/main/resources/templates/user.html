@@ -62,11 +62,7 @@
                             <td><p th:text="${user.getLastName()}"></p></td>
                             <td><p th:text="${user.getAge()}"></td>
                             <td><p th:text="${user.getEmail()}"></td>
-                            <td>
-                                <div th:each="r : ${user.getRoles()}">
-                                    <p id="role_field" th:text="${user.getRoles()}"></p>
-                                </div>
-                            </td>
+                            <td><p th:text="${user.getRoles()}"></td>
                         </tr>
                         </tbody>
                     </table>

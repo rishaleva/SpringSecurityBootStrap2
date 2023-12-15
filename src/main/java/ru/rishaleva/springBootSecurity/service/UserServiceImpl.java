@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUserEmail (String email) {
+    public User findByUserEmail(String email) {
         return userDao.findByUserEmail(email);
     }
 
@@ -39,10 +39,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(roleDao.getRoles());
         userDao.addUser(user);
     }
+
     @Override
     public void removeUser(Long id) {
         userDao.removeUser(id);
