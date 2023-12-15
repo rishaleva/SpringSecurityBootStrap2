@@ -29,7 +29,6 @@ public class AdminController {
         this.roleService = roleService;
     }
 
-    //ALL
     @GetMapping(value = "/")
     public String getAllUsers(ModelMap model, Principal principal) {
         User user = userService.findByUserEmail(principal.getName());
@@ -37,16 +36,6 @@ public class AdminController {
         List<User> listOfUsers = userService.getAllUsers();
         model.addAttribute("listOfUsers", listOfUsers);
         return "users";
-    }
-
-    // CREATE
-    @GetMapping("/new")
-    public String CreateUserForm(ModelMap model) {
-        User user = new User();
-        model.addAttribute("user", user);
-        Collection<Role> roles = roleService.getRoles();
-        model.addAttribute("role", roles);
-        return "userCreate";
     }
 
     @PostMapping("/")
@@ -59,13 +48,6 @@ public class AdminController {
         userService.updateUser(user);
 
         return "redirect:/admin/";
-    }
-
-    // UPDATE
-    @GetMapping("/{id}/update")
-    public String getEditUserForm(ModelMap model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.getUser(id));
-        return "userUpdate";
     }
 
     @PatchMapping("/{id}")
