@@ -10,4 +10,5 @@ public interface RoleDao {
     List<Role> getRoles();
 
     Role findById(Long id);
+    void addRole(Role role);
 }
